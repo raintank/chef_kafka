@@ -18,5 +18,10 @@
 #
 
 include_recipe "chef_base::default"
+if node['chef_kafka']['include_zookeeper']
+  include_recipe "java"
+  include_recipe "chef_zookeeper::install"
+  include_recipe "chef_zookeeper::collectd"
+end
 include_recipe "chef_kafka::install"
 include_recipe "chef_kafka::collectd"

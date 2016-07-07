@@ -22,4 +22,6 @@ if node['use_collectd'] && node['collectd']['java_plugins']['kafka']
   node.set['collectd']['java_plugins']['kafka']['config']['connection']['Host'] = node.name.sub /\.raintank\.io$/, ''
 end
 
-include_recipe "chef_base::collectd"
+unless node['chef_kafka']['skip_collect_recipe']
+  include_recipe "chef_base::collectd"
+end
