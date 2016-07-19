@@ -10,7 +10,7 @@ default[:chef_kafka][:include_zookeeper] = false
 default[:chef_kafka][:group_id] = "#{node.chef_environment}_kafka"
 
 # various kafka cookbook options to set
-default[:kafka][:init_style] = :upstart
+default[:kafka][:init_style] = :systemd
 default[:kafka][:broker][:reserved_broker_max_id] = 2000000
 
 default[:java][:install_flavor] = "oracle"
