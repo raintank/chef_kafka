@@ -33,4 +33,21 @@ node.set['kafka']['broker']['zookeeper_connect'] = zks
 node.set['kafka']['broker']['group_id'] = node['chef_kafka']['group_id']
 include_recipe 'kafka::_install'
 include_recipe 'kafka::_configure'
+
+remote_file 'snappy' do
+  source 'http://repo1.maven.org/maven2/org/xerial/snappy/snappy-java/1.1.2.6/snappy-java-1.1.2.6.jar'
+  owner 'root'
+  group 'root'
+  mode '0644'
+  path '/opt/kafka-0.10.0.0/libs/snappy-java-1.1.2.6.jar'
+  checksum '61f7bc4076be0320ab4ef076fb6d83e3f649c3caf9ffb6031654a73f9c23732f'
+  action :nothing
+  notifies :restart, 'service[kafka]', :delayed
+end
+
+file '/opt/kafka-0.10.0.0/libs/snappy-java-1.1.2.4.jar' do
+  action :delete
+  notifies :create, 'remote_file[snappy]'
+end
+
 tag("kafka")

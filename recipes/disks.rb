@@ -18,6 +18,7 @@
 #
 
 include_recipe "lvm"
+include_recipe "chef_base::lvm_attrs"
 
 lvm_volume_group 'kafka00' do
   physical_volumes [ node['chef_kafka']['kafka_disk'] ] 
