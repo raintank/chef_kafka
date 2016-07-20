@@ -12,6 +12,7 @@ default[:chef_kafka][:group_id] = "#{node.chef_environment}_kafka"
 # various kafka cookbook options to set
 default[:kafka][:init_style] = :systemd
 default[:kafka][:broker][:reserved_broker_max_id] = 40000000
+default[:kafka][:broker][:port] = 9092
 
 default[:java][:install_flavor] = "oracle"
 default[:java][:jdk_version] = "8"
