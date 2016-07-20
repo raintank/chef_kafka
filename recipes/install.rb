@@ -50,4 +50,12 @@ file '/opt/kafka-0.10.0.0/libs/snappy-java-1.1.2.4.jar' do
   notifies :create, 'remote_file[snappy]'
 end
 
+logDir = node['kafka']['broker'].fetch(:log, {}).fetch("dir", "/tmp/kafka-logs")
+directory logDir do
+  owner node['kafka']['user']
+  group node['kafka']['group']
+  mode '0755'
+  action :create
+end
+
 tag("kafka")
