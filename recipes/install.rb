@@ -31,6 +31,9 @@ zks = if Chef::Config[:solo]
   end
 node.set['kafka']['broker']['zookeeper_connect'] = zks
 node.set['kafka']['broker']['group_id'] = node['chef_kafka']['group_id']
+if node.attribute?('gce')
+  node.set['kafka']['broker']['broker']['rack'] = node['gce']['instance']['zone']
+end
 include_recipe 'kafka::_install'
 include_recipe 'kafka::_configure'
 
