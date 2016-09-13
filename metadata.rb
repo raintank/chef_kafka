@@ -7,7 +7,7 @@ long_description 'Installs/Configures chef_kafka'
 version          '0.1.2'
 
 depends 'chef_base', '~> 0.1.7'
-depends 'java', '~> 1.31.0'
+depends 'java', '~> 1.39.0'
 depends 'kafka', '~> 2.0.2'
 depends 'lvm', '~> 1.3.6'
 depends 'chef_zookeeper', '~> 0.1.0'
